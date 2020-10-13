@@ -1,0 +1,33 @@
+extends ../_layout.pug
+
+
+block content
+    section.splash
+        h1.splash__title.find-spinner 
+            = document.getStructuredText('page.title').asText()
+
+        p.splash__cta
+            != document.getStructuredText('page.intro').asHtml(ctx.linkResolver)
+            a.button(href='/page/pricing')
+                i.ri-arrow-right-s-line
+                = document.getText('page.call_to_action')
+
+    each slice in document.getSliceZone('page.body').slices
+        if slice.sliceType === 'pricing'
+            section.pricing.grid#features
+                h2.pricing__title= slice.nonRepeat.pricing_title.asText()
+                .pricing__intro!= slice.nonRepeat.pricing_intro.asHtml()
+                .pricing__list#pricing
+                    for price in slice.repeat.toArray()
+                        .price.pricing__item
+                            h4.price__title= price.getText('name')
+                            .price__description!= price.getStructuredText('description').asHtml()
+                            .price__footer
+                                .price__price
+                                    strong= '$'
+                                        = price.getNumber('price')
+                                    | / month
+                                .price__button
+                                    a.button(href='/')
+                                        i.ri-user-smile-line
+                                        = __('button.start-subscription')

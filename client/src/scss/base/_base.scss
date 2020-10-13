@@ -8,23 +8,29 @@
         --color-primary: #{get-color(primary)};
         --color-secondary: #{get-color(secondary)};
         --color-tertiary: #{get-color(tertiary)};
-        --color-quaternary: #{get-color(quaternary)};
 
-        --color-primary-text: #{get-color(background)};
-        --color-secondary-text: #{get-color(background)};
-        --color-tertiary-text: #{get-color(text-secondary)};
-        --color-quaternary-text: #{get-color(background)};
+        --color-primary-darker: #{get-color(primary-darker)};
+        --color-secondary-darker: #{get-color(secondary-darker)};
+        --color-tertiary-darker: #{get-color(tertiary-darker)};
+
+        --color-primary-lighter: #{get-color(primary-lighter)};
+        --color-secondary-lighter: #{get-color(secondary-lighter)};
+        --color-tertiary-lighter: #{get-color(tertiary-lighter)};
 
         --color-success: #{get-color(success)};
         --color-error: #{get-color(error)};
     }
-    [data-theme="dark"] {
-        --color-background: #{get-color(text)};
-        --color-background-secondary: #{get-color(text-secondary)};
-        --color-text: #{get-color(background)};
-        --color-text-secondary: #{get-color(background-secondary)};
-    }
+    // [data-theme="light"] {
+    //     --color-background: #{get-color(text)};
+    //     --color-background-secondary: #{get-color(text-secondary)};
+    //     --color-text: #{get-color(background)};
+    //     --color-text-secondary: #{get-color(background-secondary)};
+    // }
     
+    html {
+        scroll-behavior: smooth;
+    }
+
     html body {
         padding: 0;
         margin: 0;

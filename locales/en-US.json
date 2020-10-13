@@ -1,0 +1,32 @@
+{
+	"menu": {
+		"info": "menu.info",
+		"features": "features",
+		"pricing": "pricing",
+		"login": "sign up"
+	},
+	"index": {
+		"splash": {
+			"title": "Continuous monitoring for your",
+			"spinner": "web shop|rest service|blog|landing page",
+			"call-to-action": "Get started for free"
+		},
+		"offer": {
+			"title": "What you get with isup",
+			"text": "Monitor the response of any HTTP request -- add alerts for changes in status code, response body (either by JSON-path/value, DOM query, regex, or custom function). Set up alerts via e-mail, push-notification, or SMS.",
+			"plans": {
+				"free": {
+					"description": "Limited to max 3 URLs, and max 3 alerts -- does not include custom filters or SMS notification",
+					"price": "Free forever"
+				},
+				"basic": {
+					"description": "Limited to 10 URLs, and max 10 alerts. Does not include custom filters.",
+					"price": "$5/month"
+				}
+			}
+		}
+	},
+	"button": {
+		"start-subscription": "Start now"
+	}
+}

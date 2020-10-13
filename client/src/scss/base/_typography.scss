@@ -17,7 +17,7 @@
     h1, h2, h3, h4, h5 {
         @extend %font, 
             %font--heading,
-            %font--black;
+            %font--bold;
         @include margin(0);
     }
     p {
@@ -40,10 +40,10 @@
 
 
     h1, .heading1 { 
-        @extend %font--black, %font--xxx-large;
+        @extend %font--bold, %font--xxx-large;
     }
     h2, .heading2 { 
-        @extend %font--black, %font--xx-large;
+        @extend %font--bold, %font--xx-large;
     }
     h3, .heading3 { 
         @extend %font--x-large;
@@ -71,5 +71,9 @@
             color: var(--color-secondary);
         }
     }
+
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
+    @import url('https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css');
 }
 

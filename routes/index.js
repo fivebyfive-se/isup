@@ -4,13 +4,18 @@ const i18n = require('i18n');
 const ensureHttps = require('../lib/middleware/ensure-https');
 const themeCookie = require('../lib/middleware/theme-cookie');
 
+const prismicDom = require('../lib/middleware/inject-prismic-dom');
+const prismicApi = require('../lib/middleware/inject-prismic-api');
+
 const router = express.Router();
 
 router
     .use(ensureHttps)
     .use(themeCookie)
 
-    .get('/', async (req, res) => res.render('index'))
+    .use(prismicDom)
+
+    .get('/', prismicDom, prismicApi, async (req, res) => await res.renderPrismicPage('start'))
 
     .get('/languages/:lang', (req, res) => {
         res.cookie('language', req.params.lang, { maxAge: 900000, httpOnly: true });

@@ -1,0 +1,49 @@
+include mixins/_classes.pug
+include mixins/_grid.pug
+include mixins/_remixicon.pug
+include mixins/_scripts.pug
+include mixins/_navigation.pug
+
+doctype html
+html(lang=lang, data-theme=theme)
+    head
+        title isup
+        block head
+        link(rel='stylesheet', href='/css/critical.css')
+    body
+        header#start
+            a.header(href='/')
+                .header__logo
+                    include images/isup_logo.svg.pug
+                h1.header__title
+                    | isup
+            nav.nav
+                +nav-link('#features', __('menu.features'), 'function')
+                +nav-link('#pricing', __('menu.pricing'), 'vip-crown')
+                +nav-link('/auth/login', __('menu.login'), 'user-smile', 'highlight')
+
+        article
+            main
+                block content
+
+        footer
+            section
+                p.
+                    #[strong isup] brought to you with #[i.ri-heart-fill] by 
+                    #[a.fivebyfive(href='https://www.fivebyfive.se/', target='_blank', rel='nofollow')= 'Fivebyfive'].
+                    #[i.ri-copyright-line] 2020 5x5AB.
+
+        link(rel='stylesheet', href='//cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css')
+
+        link(rel='stylesheet', href='/css/non-critical.css')
+        
+        +script('/js/main.js')
+
+        +renderScripts()
+        
+        block styles
+        block scripts
+
+        style.
+            @import url('https://fonts.googleapis.com/css2?family=Spartan:wght@900&display=swap');
+            .fivebyfive { font-family: 'Spartan', 'Futura', 'Futura PT', 'Beteckna', sans-serif; font-weight: 900; }
