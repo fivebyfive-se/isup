@@ -55,3 +55,76 @@
 
     requestAnimationFrame(animate);
 })();
+
+(() => {
+    const drawLogo = (targetElement) => {
+        const two = new Two({ width: 80, height: 80 }).appendTo(targetElement);
+        const goalCircleish = [[0, 30], [-20, 20], [-15, 10], [0, -5], [15, 10], [20, 20], [0,  30]];
+        const goalCircumflex = [[-30,30], [-20,20], [-10,10], [0,-5], [10,10], [20,20], [30,30]];
+        const goalFinal = [[-30,30], [-20,30], [-10,30], [0,30], [10,30], [20,30], [30,30]];
+
+        const path = two.makePath(
+            -30,30,
+            -20,30,
+            -10,30,
+            0,30,
+            10,30,
+            20,30,
+            30,30,
+            true
+        );
+        path.curved = true;
+        path.join = 'bevel';
+        path.center();
+
+        const logo_group = two.makeGroup(path);
+        logo_group.noFill();
+        logo_group.stroke = 'var(--color-text)';
+        logo_group.linewidth = '16px';
+        logo_group.join = 'bevel';
+        logo_group.translation.set(two.width / 2, 0);
+
+        path.vertices.forEach((v, i) => {
+            const { x, y } = v;
+
+            const [ circleX, circleY ] = goalCircleish[i];
+            const [ flexX, flexY ] = goalCircumflex[i];
+            const [ finalX, finalY ] = goalFinal[i];
+            const update = (pos) => {
+                v.x = pos.x;
+                v.y = pos.y;
+            };
+
+            const tweenFinal = new TWEEN.Tween({x: circleX, y:circleY })
+                .to({ x: finalX, y: finalY }, 1000)
+                .easing(TWEEN.Easing.Back.InOut)
+                .onUpdate(update);
+
+            const tweenCircle = new TWEEN.Tween({x: flexX, y: flexY})
+                .to({ x: circleX, y: circleY }, 1000)
+                .easing(TWEEN.Easing.Elastic.InOut)
+                .onUpdate(update);
+
+            const tweenCircumflex = new TWEEN.Tween({x, y})
+                .to({ x: flexX, y: flexY }, 1500)
+                .easing(TWEEN.Easing.Elastic.InOut)
+                .onUpdate(update);
+
+            tweenCircumflex.chain(tweenCircle);
+            tweenCircle.chain(tweenFinal);
+            tweenCircumflex.start(2500);
+        });
+
+        const animate = (time) => {
+            requestAnimationFrame(animate);
+            TWEEN.update(time);
+            two.update();
+        };
+        requestAnimationFrame(animate);
+    };
+
+    document.querySelector('.header__logo svg').style.display = 'none';
+
+    drawLogo(document.querySelector('.header__logo'));
+
+})();
